@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="num1">numero1</label>
+    <input type="number" name="num1" id="num1">
+    <label for="num2">numero2</label>
+    <input type="number" name="num2" id="num2">
+    <label for="num3">numero3</label>
+    <input type="number" name="num3" id="num3">
+    <p></p>
+    <button>Comprobar</button>
+    
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+    // aqui va el codigo
+    // La primera linea sera la que realice las acciones al cargar la pagina
+    $(document).ready(function(){
+        $("button").click(function(){
+            num1 = parseInt(("#num1").val());
+            num2 = parseInt($("#num2").val());
+            num3 = parseInt($("#num3").val());
+            if (num1>=num2 && num1>=num3) {
+                if(num2>=num3){
+                    $("p").text("el mayor es "+num1+" el intermedio "+num2+ " y el pequeño "+num3)
+                }
+                else{
+                    $("p").text("el mayor es "+num1+" el intermedio "+num3+ " y el pequeño "+num2)
+                }
+                
+            }
+            else if (num2>=num1 && num2>=num3) {
+                if(num1>=num3){
+                    $("p").text("el mayor es "+num2+" el intermedio "+num1+ " y el pequeño "+num3)
+                }
+                else{
+                    $("p").text("el mayor es "+num2+" el intermedio "+num3+ " y el pequeño "+num1)
+                }
+                
+            }
+            else if (num3>=num1 && num3>=num2) {
+                if(num2>=num1){
+                    $("p").text("el mayor es "+num3+" el intermedio "+num2+ " y el pequeño "+num1)
+                }
+                else{
+                    $("p").text("el mayor es "+num3+" el intermedio "+num1+ " y el pequeño "+num2)
+                }
+            }  
+            console.log (num1+num2)
+          })
+
+    });
+</script>
+</html>

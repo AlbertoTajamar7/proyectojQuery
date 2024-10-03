@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Numero tabla de multiplicar</label>
+    <input type="text" id="cajatabla">
+    <button id="botontabla">tabla multiplicar</button>
+    <table id="tabla"></table>
+    
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+    // aqui va el codigo
+    // La primera linea sera la que realice las acciones al cargar la pagina
+    $(document).ready(function(){
+        $("#botontabla").click(function(){
+            let num = parseInt($("#cajatabla").val())
+            let html = "";
+            for (let i = 1; i <= 10; i++) {
+                let operacion = num * i;
+                let texto = num + " * " + i;
+                html += "<tr>";
+                html += "<td>" + texto + "</td>";
+                html += "<td>" + operacion + "</td>";
+                html += "</tr>";
+            }
+            $("#tabla").html(html);
+        })
+
+    })
+</script>
+</html>

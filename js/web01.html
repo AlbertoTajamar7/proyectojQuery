@@ -1,0 +1,84 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{ color: red;}
+        .azul{
+            color: blue;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Comentarios control + c + k-->
+    <!-- descomentar control + k + q -->
+    <h1>selectores Jqery</h1>
+    <button id="boton1">Pulsar para algo</button>
+    <h2 class="azul">soy un titulo azul</h2>
+    <button class="azul">Boton azul</button>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita eaque tempora molestiae eveniet</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita eaque tempora molestiae eveniet</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita eaque tempora molestiae eveniet</p>
+    <hr>
+    <img src="../imagenes/pexels-souvenirpixels-1619317.jpg" id="imagen1" width="20%"> <br>
+    <img src="../imagenes/imagenes-de-paisajes-hermosos-4.jpg" width="20%">
+    <hr>
+    <h1>Sumar numeros</h1>
+    <label for="n1">Numero 1</label>
+    <input type="text" id="n1" name="n1"> <br>
+    <label for="n2">Numero 2</label>
+    <input type="text" name="n2" id="n2">
+    <h1 id="resultado">Total</h1>
+    <button></button>
+
+
+</body>
+
+<script src="jquery-3.7.1.js"></script>
+<script>
+   // aqui va el codigo
+   // La primera lñinea sera la que realice las acciones al cargar la pagina
+   $(document).ready(function(){
+
+    // alert("Mi primera app!!");
+
+    // Selector de etiqueta
+    // $("h1").hide();
+    // // selector de id
+    // $("#boton1").hide();
+    $("p").click(function(){
+        // Imprescindible lanzar mensajes por consola
+        console.log("Has pulsado")
+        // tenemos un palabra cable que es THIS que hace referencia al objeto que hace la llaamda al metodo
+        $(this).hide();
+    })
+    $("#boton1").click(function(){
+        alert("soy un boton");
+    })
+    //ATRRIBUTOS 
+    //$("#imagen1").attr("src","../imagenes/imagenes-de-paisajes-hermosos-4.jpg");
+    $("img").mouseover(function(){
+        $(this).attr("src","../imagenes/paisajes-de-yosemite-46208063.webp")
+    })
+    $("img").mouseout(function(){
+        $(this).attr("src","../imagenes/imagenes-de-paisajes-hermosos-4.jpg")
+        $("#imagen1").attr("src","../imagenes/pexels-souvenirpixels-1619317.jpg")
+    })
+    
+    $("img").click(function(){
+        let imagen = $(this).attr("src");
+        console.log("Pulsando "+ imagen)
+    })
+    $("button").click(function(){
+        let num1 = parseInt(("#n1").val())
+        let num2 = parseInt(("#n2").val())
+        let suma = num1 + num2
+        $("#resultado").text(suma)
+    })
+
+   })
+
+</script>
+</html>
