@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Servicios XML Empleados</h1>
+    <button id="botonleer">Leer Xml</button>
+    <ul id="listaempleados"></ul>
+
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+     $(document).ready(function(){
+        $("#botonleer").click(function(){
+            $.get("../documents/departamentos.xml",function(data){
+                var html ="";
+                let filtro =
+                // entramos en los datos
+                $(data).find("DEPT").each(function(){
+
+                  
+
+
+                })
+
+            })
+        })
+
+    })
+</script>
+    
+</body>
+</html>

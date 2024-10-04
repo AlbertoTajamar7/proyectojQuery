@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="range" max="5" min="1" id="rango">
+    <div id="contenido"></div>
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+     $(document).ready(function(){
+        $("").click(function(){
+            let num = parseInt($("#rango").val());
+            let imagen = $("<imagen>", {  "src": "../imagenes/imagenes-de-paisajes-hermosos-4.jpg"});
+            imagen.append("#contenido");
+        })
+     })
+</script>
+</html>

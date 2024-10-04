@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Filtros XML</h1>
+    <label for="cajacodigo">Introducce Codigo</label>
+    <input type="text" id="cajacodigo">
+    <button id="botonleer">Buscar localidad</button>
+    <hr>
+    <input type="text" id="cajaloc">
+    <button id="botonloc">Buscar localidad</button>
+    <div id="listaempleados"></div>
+
+    
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+     $(document).ready(function(){
+        $("#botonleer").click(function(){
+            $.get("../documents/departamentos.xml",function(data){
+                let id = $("#cajacodigo").val();
+                let filtro = "DEPT[DEPT_NO=" + id + "]"
+                let nododept = $(data).find(filtro).first();
+                let nombre = $(nododept).find("DNOMBRE").text()
+                let localidad = $(nododept).find("LOC").text()
+                $("#listaempleados").text(nombre +"-"+ localidad)
+               })
+        })
+        $("#botonloc").click(function(){
+            $.get("../documents/departamentos.xml",function(data){
+                let loc = $("#cajaloc").val();
+                let filtro = "LOC:contains(" + loc + ")";
+                $(data).find(filtro).each(function(){
+                    if ($(data).find(filtro).length == 0) {
+                        $("#listaempleados").text("Datos no validos");
+                    }else{
+                        let nodopadre = $(this).parent();
+                        let id = $(nodopadre).attr("DEPT_NO");
+                        let nombre = $(nodopadre).find("DNOMBRE").text();
+                        $("#listaempleados").text(nombre +"-"+ id);   
+                    }
+                    
+                });
+                
+               })
+
+
+        })
+})
+</script>
+</html>

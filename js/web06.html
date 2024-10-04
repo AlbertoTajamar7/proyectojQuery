@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Controles dinamicos</h1>
+    <button>Pulsar para hacer algo...</button>
+    <div id="prueba"></div>
+
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+     $(document).ready(function(){
+        $("button").click(function(){
+            alert("Boton pulsado")
+            //aqui creamos un boton con el evento de onclick, con una funciono NO anonima por lo que esta funcion debera estar fuera de Jquery
+            $("#prueba").html("<button id='miboton' onclick='mostrarMensaje()'>Boton nuevo</button>")
+
+            $("#miboton").click(function(){
+                alert("pulsado");
+            })
+                // añadir las "<>" es crear un objeto nuevo con el que le damos caracteristicas con Json
+            var parrafo = $("<objeto>",  {  "text": "Nuevo párrafo", "style": "color:green"  }  );
+                // aqui lo añadimos al padre que en este caso es prueba, usamos appendto
+                parrafo.appendTo($("#prueba"))
+               // si fuera al reves deberiamos usar append
+                parrafo.click(function(){
+
+                $(this).css("color","blue")
+                $(this).text("pulsado!!!")
+        })
+        })
+     })
+     // las funciones con nombre no funcionan en jquery, por lo que hay que sacarlas y usar Js normal
+        function mostrarMensaje(){
+                alert("funcion con nombre")
+            }
+</script>
+</html>

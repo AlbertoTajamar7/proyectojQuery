@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#buscar").click(function(){
+            $.get("../documents/alumnos.xml", function(data){ // conectamos con ela rchivo
+                let notas = $("#nota").val();
+                let filtro = "nota:contains("+ notas +")" // creamos un flitro
+                var html = ""
+                $(data).find(filtro).each(function(){  // recorremos el archivo por el filtrando
+                    let nodopadre = $(this).parent(); // recorremos desde el padre para poder recorrerlo completo
+                    let id = $(nodopadre).attr("idalumno");// vamos cogiendo los datos que necesitamos
+                    let nombre = $(nodopadre).find("nombre").text();// vamos cogiendo los datos que necesitamos
+                    let apellido = $(nodopadre).find("apellidos").text();// vamos cogiendo los datos que necesitamos
+                    html += $("#tabla").html("<tr><td>"+ nombre +"</td>"+"<td>"+ apellido +"</td>"+"<td>"+ notas +"</td></tr>")
+                })
+                
+                
+            })
+        })
+        // version dos mejorada
+        $("#buscar").click(function(){
+            $.get("../documents/alumnos.xml", function(data){
+                let notas = $("#nota").val();
+                $(data).find(filtro).each(function(){
+                    var notaAlumno ="" ;
+                    var html = "";
+                    parseInt($(this).find("nota").text())
+                    if (notaAlumno>=nota) {
+                        var nombre = $(this).find("nombre").text()
+                        var apellidos = $(this).find("apellidos").text()
+                        html += $("#tabla").html("<tr><td>"+ nombre +"</td>"+"<td>"+ apellido +"</td>"+"<td>"+ notas +"</td></tr>")
+                    }
+                    $("#tabla").html(html)
+                })
+                
+                
+            })
+        })
+    })
+</script>
+<body>
+    <h1>Alumnos Notas XML</h1>
+    <label for="nota">Introduzca nota</label>
+    <input type="text" id="nota">
+    <button id="buscar">Buscar alumnos</button>
+    <table id="tabla">
+        <tr>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Nota</td>
+        </tr>
+    </table>
+</body>
+</html>

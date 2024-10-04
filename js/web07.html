@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Botones</h1>
+    <div id="caja"></div>
+    <div id="caj2"></div>
+    <input type="hidden" value="10" id="prueba">
+    
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function(){
+       var prueba = parseInt($("#prueba").val());
+            for (let i = 1; i <= prueba; i++) {
+                var botones = $("<button>",{ "text": "genera " , "value": Math.random*10});
+                botones.appendTo($("#caja"));  
+            }
+            botones.click(function(){
+                $("#caja2").html("<p>"+ botones.val()+"/p>")
+            })
+
+    })
+
+</script>
+</html>

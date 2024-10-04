@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function(){
+            $.get("https://northwind.netcore.io/customers.xml",function(data){ // añadiendo las dos "\\" antes de los puntos 
+               $(data).find("d2p1\\:Customer").each(function(){//el filtro
+                    let contactname = $(this).find("d2p1\\:ContactName").text()
+                    let option = $("<option>",{"text": contactname,"value":contactname});
+                    $("#lista").append(option);
+            })    
+        })
+        // la comprobación de que el formato puede ocasionar de que no se pueda leer 
+        $("#cargardepartamentos").click(function(){
+            $.get("https://apicruddepartamentosxml.azurewebsites.net/api/Departamentos",function(data){
+                var num = $(data).find("departamentos"),length; //el filtro
+                console.log(num)
+
+
+            })    
+        })
+        $("#lista").change(function(){
+            let persona = $("#lista option:selected").text()
+            $.get("https://northwind.netcore.io/customers.xml",function(data){
+                console.log("dentro")
+                $(data).find("d2p1\\:Customer").each(function(){
+                    console.log("leyendo")
+                    let contactname = $(this).find("d2p1\\:Phone").text()
+                    let id = $(this).find("d2p1\\:Id").text()
+                    $("#datos").html("<li>"+ persona +"</li><li>"+ contactname +"</li><li>" + id + "</li>");
+                })
+                
+            }) 
+        })
+           
+    })   
+</script>
+<body>
+    <label for="cajacodigo">Introduzca nota</label>
+    <input type="text" id="cajacodigo">
+    <button id="cargarcustomer">Leer archivo</button>
+    <button id="cargardepartamentos">Cargar departamentos</button>
+    <select name="lista" id="lista"></select>
+    <ul id="datos"></ul>
+
+    
+</body>
+</html>

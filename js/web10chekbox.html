@@ -1,0 +1,34 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="range" id="rango" max="10" min="1" value="1">
+    <div id="caja"></div>
+    
+</body>
+<script src="jquery-3.7.1.js"></script>
+<script>
+     $(document).ready(function(){
+        $("#rango").change(function(){
+           var rango = parseInt($(this).val())
+            $("#caja").text("")
+           for (let i = 1; i <= rango; i++) {
+            let aleatorio = parseInt(Math.random()*10)
+            var checks = $("<input>",{ "type": "checkbox", "value": aleatorio});
+            var labels = $("<label>",{"text": aleatorio});
+            checks.appendTo("#caja")
+            labels.appendTo("#caja")
+           }
+           checks.change(function(){
+            valor = parseInt($(this).val());
+            console.log(valor)
+           })
+           
+      
+        })
+     })
+</script>
+</html>
