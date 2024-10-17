@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 20%;
+    }
+</style>
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function(){
+        $.get("https://apiclientesxml.azurewebsites.net/api/Clientes",function(data){ // añadiendo las dos "\\" antes de los puntos 
+            $(data).find("Cliente").each(function(){//el filtro
+                let contactname = $(this).find("Nombre").text();
+                let email = $(this).find("Email").text();
+                let img = $(this).find("Imagen").text();
+                let option = $("<button>",{"text": contactname,"value":contactname});
+                option.click(function() {
+                    // Aquí puedes agregar más acciones que desees realizar
+                    $("#info").html("soy "+contactname+"<br>"+"mi correo es "+ email+"<br>"+ "<img src='" + img + "' alt='Foto de perfil' />");
+                });
+                $("#botones").append(option)
+    
+            })           
+        })
+    })   
+</script>
+<body>
+    <h1>Clientes xml</h1>
+    <div id="botones"></div>
+    <div id="info">
+    </div>
+    
+</body>
+</html>
